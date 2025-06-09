@@ -6,13 +6,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace backend.Models;
 
-[Table("Atillo")]
-public partial class Atillo
+[Table("courses")]
+[MySqlCharSet("utf8mb3")]
+[MySqlCollation("utf8mb3_general_ci")]
+public partial class Course
 {
     [Key]
-    [Column(TypeName = "int(11)")]
+    [Column("id", TypeName = "int(11)")]
     public int Id { get; set; }
 
-    [Column("giatay")]
-    public string Giatay { get; set; } = null!;
+    [Column("name")]
+    [StringLength(255)]
+    public string Name { get; set; } = null!;
 }
