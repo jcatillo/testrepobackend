@@ -10,7 +10,7 @@ using backend.Context;
 
 namespace backend.Migrations
 {
-    [DbContext(typeof(BackendContext))]
+    [DbContext(typeof(CspsContext))]
     [Migration("20250609080232_MigrationName")]
     partial class MigrationName
     {

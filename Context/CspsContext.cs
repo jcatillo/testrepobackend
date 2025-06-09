@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Scaffolding.Internal;
+using backend.Models;
 
-namespace backend.Models;
+namespace backend.Context;
 
 public partial class CspsContext : DbContext
 {

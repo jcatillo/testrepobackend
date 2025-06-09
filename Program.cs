@@ -14,7 +14,7 @@ string conn = Environment.GetEnvironmentVariable("MY_CONN_STRING");
 
 builder.Services.AddControllers();
 
-builder.Services.AddDbContext<BackendContext>(opt =>
+builder.Services.AddDbContext<CspsContext>(opt =>
    opt.UseMySql(
                 conn,
                 new MySqlServerVersion(new Version(10, 5, 0))
