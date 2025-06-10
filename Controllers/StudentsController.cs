@@ -32,7 +32,7 @@ namespace backend.Controllers
 
             if (student == null)
             {
-                return NotFound();
+                return NotFound($"Student with ID {studentId} not found.");
             }
 
             return Ok(student);
