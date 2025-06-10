@@ -59,5 +59,32 @@ namespace backend.Controllers
             }
         }
 
+        [HttpDelete("/delete/{studentId}", Name = "DeleteStudentByStudentId")]
+        public async Task<ActionResult> Delete(string studentId)
+        {
+            if (string.IsNullOrWhiteSpace(studentId))
+            {
+                return BadRequest("Student ID cannot be null or empty.");
+            }
+
+            var student = await cspsContext.Students.FirstOrDefaultAsync(s => s.StudentId == studentId);
+
+            if (student == null)
+            {
+                return NotFound($"Student with ID {studentId} not found.");
+            }
+
+            try
+            {
+                cspsContext.Students.Remove(student);
+                await cspsContext.SaveChangesAsync();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
     }
 }
