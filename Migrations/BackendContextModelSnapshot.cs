@@ -9,7 +9,7 @@ using backend.Context;
 
 namespace backend.Migrations
 {
-    [DbContext(typeof(BackendContext))]
+    [DbContext(typeof(CspsContext))]
     partial class BackendContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
