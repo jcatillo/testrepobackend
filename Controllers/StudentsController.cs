@@ -19,14 +19,14 @@ namespace backend.Controllers
         }
 
         [HttpGet(Name = "GetStudents")]
-        public async Task<ActionResult<IEnumerable<Student>>> Get()
+        public async Task<ActionResult<IQueryable<Student>>> Get()
         {
             var students = await cspsContext.Students.ToListAsync();
             return Ok(students);
         }
 
         [HttpGet("{studentId}", Name = "GetStudentsByStudentId")]
-        public async Task<ActionResult<IEnumerable<Student>>> Get(string studentId)
+        public async Task<ActionResult<IQueryable<Student>>> Get(string studentId)
         {
             var student = await cspsContext.Students.FirstOrDefaultAsync(s => s.StudentId == studentId);
 
