@@ -59,7 +59,7 @@ namespace backend.Controllers
             }
         }
 
-        [HttpDelete("/delete/{studentId}", Name = "DeleteStudentByStudentId")]
+        [HttpDelete("delete/{studentId}", Name = "DeleteStudentByStudentId")]
         public async Task<ActionResult> Delete(string studentId)
         {
             if (string.IsNullOrWhiteSpace(studentId))
