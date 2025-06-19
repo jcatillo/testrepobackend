@@ -86,5 +86,42 @@ namespace backend.Controllers
             }
         }
 
+        [HttpPut("update/{studentId}", Name = "UpdateStudentByStudentId")]
+        public async Task<ActionResult<Student>> UpdateStudent([FromBody] Student studentInfo, string studentId)
+        {
+            if (string.IsNullOrWhiteSpace(studentId))
+            {
+                return BadRequest("Student ID cannot be null or empty.");
+            }
+
+            if (studentInfo == null)
+            {
+                return BadRequest("Student information is required.");
+            }
+
+            var existingStudent = await cspsContext.Students.FirstOrDefaultAsync(s => s.StudentId == studentId);
+
+            if (existingStudent == null)
+            {
+                return NotFound($"Student with ID '{studentId}' not found.");
+            }
+
+            existingStudent.FirstName = studentInfo.FirstName;
+            existingStudent.LastName = studentInfo.LastName;
+            existingStudent.EmailAddress = studentInfo.EmailAddress;
+            existingStudent.YearLevel = studentInfo.YearLevel;
+            existingStudent.Password = studentInfo.Password;
+            existingStudent.DateStamp = DateTime.UtcNow;
+
+            try
+            {
+                await cspsContext.SaveChangesAsync();
+                return Ok(existingStudent);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
     }
 }
