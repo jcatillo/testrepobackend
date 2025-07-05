@@ -31,8 +31,6 @@ public partial class CspsContext : DbContext
 
     public virtual DbSet<EditLog> EditLogs { get; set; }
 
-    public virtual DbSet<EfmigrationsHistory> EfmigrationsHistories { get; set; }
-
     public virtual DbSet<Env> Envs { get; set; }
 
     public virtual DbSet<Event> Events { get; set; }
@@ -90,7 +88,7 @@ public partial class CspsContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
-            .UseCollation("utf8mb4_uca1400_ai_ci")
+            .UseCollation("utf8mb4_general_ci")
             .HasCharSet("utf8mb4");
 
         modelBuilder.Entity<Admin>(entity =>
@@ -126,11 +124,6 @@ public partial class CspsContext : DbContext
         modelBuilder.Entity<EditLog>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
-        });
-
-        modelBuilder.Entity<EfmigrationsHistory>(entity =>
-        {
-            entity.HasKey(e => e.MigrationId).HasName("PRIMARY");
         });
 
         modelBuilder.Entity<Env>(entity =>
