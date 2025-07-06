@@ -211,6 +211,10 @@ public partial class CspsContext : DbContext
         modelBuilder.Entity<Student>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+                    entity.Property(e => e.Id)
+              .ValueGeneratedOnAdd(); // ✅ Required for Pomelo
+
         });
 
         modelBuilder.Entity<StudentsGuest>(entity =>
