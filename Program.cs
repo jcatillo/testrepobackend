@@ -16,11 +16,12 @@ Env.Load();
 var builder = WebApplication.CreateBuilder(args);
 
 
+// Entity that stores all the JWT necessities, and used the information in appsettings.json
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
 var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>();
 
 
-// Crucial ENV informations
+// Crucial ENV information
 string conn = Environment.GetEnvironmentVariable("MY_CONN_STRING");
 
 // Add services to the container.
@@ -33,9 +34,10 @@ builder.Services.AddDbContext<CspsContext>(opt =>
                 )
 );
 builder.Services.AddEndpointsApiExplorer();
+
+// Use to have an authorization input in our Swagger API, but if you want to use POSTMAN, this is not needed.
 builder.Services.AddSwaggerGen(options =>
 {
-    // Add JWT Bearer definition
     var jwtSecurityScheme = new OpenApiSecurityScheme
     {
         Scheme = "bearer",
@@ -62,6 +64,7 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
+// Dependencies
 builder.Services.AddScoped<IRegisterService, RegisterService>();
 builder.Services.AddScoped<JwtAuthService>();
 

@@ -20,11 +20,12 @@ namespace Services
             _jwtAuthService = jwtAuthService;
         }
 
-
+        
         public async Task<List<Student>> Get()
         {
             return await _context.Students.ToListAsync();
         }
+
         public async Task<AuthResponse> Authenticate(SignInRequest loginRequest)
         {
             if (string.IsNullOrWhiteSpace(loginRequest.StudentId) || string.IsNullOrEmpty(loginRequest.Password))

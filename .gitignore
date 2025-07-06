@@ -34,4 +34,6 @@ artifacts/
 
 # .env
 .env
-appsettings.json
+
+
+.json
