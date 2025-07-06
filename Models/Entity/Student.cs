@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using Request;
 
 namespace backend.Models;
 
@@ -40,4 +41,6 @@ public partial class Student
 
     [Column("date_stamp", TypeName = "datetime")]
     public DateTime DateStamp { get; set; }
+
+
 }
