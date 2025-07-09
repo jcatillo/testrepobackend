@@ -66,6 +66,7 @@ builder.Services.AddSwaggerGen(options =>
 
 // Dependencies
 builder.Services.AddScoped<IRegisterService, RegisterService>();
+builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<JwtAuthService>();
 
 

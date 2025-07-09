@@ -17,11 +17,13 @@ namespace backend.Controllers
     {
         private readonly ILogger<StudentsController> _logger;
         private readonly IRegisterService _registerService;
+        private readonly ILoginService _loginService;
 
-        public StudentsController(ILogger<StudentsController> logger, IRegisterService registerService)
+        public StudentsController(ILogger<StudentsController> logger, IRegisterService registerService, ILoginService loginService)
         {
             _logger = logger;
             _registerService = registerService;
+            _loginService = loginService;
         }
 
         [HttpPost("/auth/register")]
@@ -37,7 +39,7 @@ namespace backend.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<AuthResponse>> Login([FromBody] SignInRequest request)
         {
-            return await _registerService.Authenticate(request);
+            return await _loginService.SignIn(request);
         }
 
 
