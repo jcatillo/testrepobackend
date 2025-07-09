@@ -12,7 +12,6 @@ namespace Interfaces
     public interface IRegisterService
     {
         Task<AuthResponse> RegisterAsync(SignUpRequest request);
-        Task<AuthResponse> Authenticate(SignInRequest request);
 
         Task<List<Student>> Get();
 
